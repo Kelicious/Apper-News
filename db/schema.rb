@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514152655) do
+ActiveRecord::Schema.define(:version => 20130514181612) do
 
   create_table "comment_ancestries", :force => true do |t|
     t.integer  "ancestor_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130514152655) do
     t.string   "link"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "title"
   end
 
   add_index "stories", ["author_id"], :name => "index_stories_on_author_id"

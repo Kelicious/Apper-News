@@ -5,12 +5,13 @@ class User < ActiveRecord::Base
   before_save :create_remember_token
 
   has_many :emails, dependent: :destroy
-  accepts_nested_attributes_for :emails
+  accepts_nested_attributes_for :emails, reject_if: :all_blank
   #has_many :stories, foreign_key: :author_id
   #has_many :comments
 
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates :password, on: :update, allow_nil: true, length: { minimum: 6 }
 
   private
 
