@@ -1,0 +1,11 @@
+<div class="comment">
+  <p>
+    <%= link_to comment.author.name, user_path(comment.author) %>
+    <%= "#{time_ago_in_words(comment.created_at)} ago"%>
+  </p>
+  <p><%= comment.body %></p>
+  <%= link_to "Reply To Comment", reply_comment_path(comment) %>
+  <% comment.children.each do |comment| %>
+    <%= render comment %>
+  <% end %>
+</div>

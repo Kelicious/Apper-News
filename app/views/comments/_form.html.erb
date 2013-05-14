@@ -1,4 +1,12 @@
 <%= form_for(@comment) do |f| %>
+  <%= f.hidden_field :author_id, value: @comment.author_id %>
+  <%= f.hidden_field :story_id, value: @comment.story_id %>
+  <%= f.hidden_field :parent_id, value: @comment.parent_id %>
+  <ul>
+    <% @comment.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
   <%= f.text_area :body%>
   <br>
   <%= f.submit "add comment" %>

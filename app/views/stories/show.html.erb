@@ -1,2 +1,5 @@
 <h1><%= link_to @story.title, @story.link %></h1>
 
+<% @story.comments.select{ |c| c.parent.nil? }.each do |comment| %>
+  <%= render comment %>
+<% end %>
