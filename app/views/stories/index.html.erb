@@ -1,0 +1,9 @@
+<ol>
+  <% @stories.each do |story| %>
+    <li>
+      <%= link_to "Upvote", "#{story_path(story)}/upvote", method: :post %>
+      <%= link_to "Downvote", "#{story_path(story)}/downvote", method: :post %>
+      <%= link_to story.title, story %>
+    </li>
+  <% end %>
+</ol>

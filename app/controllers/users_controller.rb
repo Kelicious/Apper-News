@@ -10,6 +10,10 @@ class UsersController < ApplicationController
       flash[:notices] = ["Account created!"]
       redirect_to @user
     else
+      emails_unentered = params[:user][:emails_attributes].select do |key, val|
+        val['address'].blank?
+      end.count
+      (emails_unentered).times { @user.emails.build }
       render :new
     end
   end
