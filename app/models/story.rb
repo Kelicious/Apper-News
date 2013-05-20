@@ -11,13 +11,11 @@ class Story < ActiveRecord::Base
 
   def self.popular
     self.find_by_sql(<<-SQL)
-      SELECT stories.*
+      SELECT stories.*, COUNT(upvotes.id)
       FROM stories
-        JOIN upvotes
+        LEFT JOIN upvotes
           ON stories.id = upvotes.story_id
-      WHERE upvotes.created_at > (SELECT DATETIME('now', '-1 day'))
       GROUP BY stories.id
-      HAVING COUNT(upvotes.id) > 0
       ORDER BY COUNT(upvotes.id) DESC
     SQL
   end
