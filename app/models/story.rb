@@ -11,12 +11,19 @@ class Story < ActiveRecord::Base
 
   def self.popular
     self.find_by_sql(<<-SQL)
-      SELECT stories.*, COUNT(upvotes.id)
+      SELECT stories.*, SUM(upvotes.value)
       FROM stories
         LEFT JOIN upvotes
           ON stories.id = upvotes.story_id
       GROUP BY stories.id
-      ORDER BY COUNT(upvotes.id) DESC, stories.created_at DESC
+      ORDER BY SUM(upvotes.value) DESC, stories.created_at DESC
     SQL
+  end
+  
+  # For the short url stub
+  def domain
+    temp = link.dup
+    temp.slice!("http://")
+    temp.split('/').first
   end
 end

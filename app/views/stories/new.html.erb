@@ -1,6 +1,7 @@
 <h1>Submit Story</h1>
 
 <%= form_for(@story) do |f| %>
+  <%= f.hidden_field :author_id, value: current_user.id %>
   <ul>
     <% @story.errors.full_messages.each do |error| %>
       <li><%= error %></li>

@@ -5,7 +5,7 @@ class StoriesController < ApplicationController
   end
 
   def new
-    @story = Story.new
+    @story = Story.new()
     @story.comments.build
   end
 
