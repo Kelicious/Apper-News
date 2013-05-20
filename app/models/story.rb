@@ -16,7 +16,7 @@ class Story < ActiveRecord::Base
         LEFT JOIN upvotes
           ON stories.id = upvotes.story_id
       GROUP BY stories.id
-      ORDER BY COUNT(upvotes.id) DESC
+      ORDER BY COUNT(upvotes.id) DESC, stories.created_at DESC
     SQL
   end
 end
