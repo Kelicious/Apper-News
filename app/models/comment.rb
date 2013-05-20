@@ -8,8 +8,8 @@ class Comment < ActiveRecord::Base
   belongs_to :story
   belongs_to :author, class_name: "User"
 
-  has_many :comment_ancestries
-  has_many :ancestors, through: :comment_ancestries
+  has_many :comment_ancestries, foreign_key: "ancestor_id"
+  #has_many :ancestors, through: :comment_ancestries
   has_many :descendents, through: :comment_ancestries
 
   validates :body, :author_id, presence: true

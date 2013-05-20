@@ -1,1 +1,4 @@
 <%= render @comment %>
+<% @comment.descendents.select { |c| c.parent_id == @comment.id }.each do |comment| %>
+  <%= render comment %>
+<% end %>

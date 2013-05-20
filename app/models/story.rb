@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-  attr_accessible :title, :link, :author_id, :comments_attributes
+  attr_accessible :title, :link, :author_id, :comments_attributes, :points
 
   belongs_to :author, class_name: "User"
   has_many :comments
@@ -11,7 +11,7 @@ class Story < ActiveRecord::Base
 
   def self.popular
     self.find_by_sql(<<-SQL)
-      SELECT stories.*, SUM(upvotes.value)
+      SELECT stories.*, COALESCE(SUM(upvotes.value), 0) AS points
       FROM stories
         LEFT JOIN upvotes
           ON stories.id = upvotes.story_id
@@ -23,7 +23,7 @@ class Story < ActiveRecord::Base
   # For the short url stub
   def domain
     temp = link.dup
-    temp.slice!("http://")
+    temp.slice!(/.*:\/\//)
     temp.split('/').first
   end
 end
