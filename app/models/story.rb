@@ -5,7 +5,7 @@ class Story < ActiveRecord::Base
   has_many :comments
   accepts_nested_attributes_for :comments, reject_if: :all_blank
 
-  has_many :votes
+  has_many :upvotes
 
   validates :title, :link, presence: true
 
@@ -20,6 +20,10 @@ class Story < ActiveRecord::Base
     SQL
   end
   
+  def points
+    @points || upvotes.sum("value")
+  end
+
   # For the short url stub
   def domain
     temp = link.dup

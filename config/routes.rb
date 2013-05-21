@@ -4,14 +4,10 @@ Hnclone::Application.routes.draw do
   resources :users
   resource :sessions, only: [:create, :new, :destroy]
   resources :stories do
-    member do
-      resources :comments, only: [:new]
-    end
+    resources :comments, only: [:new]
   end
   resources :comments, except: [:new] do
-    member do
-      get 'reply'
-    end
+    get 'reply'
   end
 
   match '/signup', to: 'users#new'

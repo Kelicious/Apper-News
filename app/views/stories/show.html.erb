@@ -1,5 +1,6 @@
-<h1><%= link_to @story.title, @story.link %></h1>
-
+<%= render @story %>
+<small><%= link_to "Reply to Article", new_story_comment_path(@story) %></small>
+<br><br><br>
 <% @story.comments.select{ |c| c.parent.nil? }.each do |comment| %>
   <%= render comment %>
 <% end %>

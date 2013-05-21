@@ -6,7 +6,7 @@ html {
 
 body {
   padding-top: 60px;
-  background-color: rgb(190,190,190);
+  background-color: rgb(220,220,220);
 }
 
 #logo {
@@ -19,4 +19,13 @@ body {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
+}
+
+div.comment-replies {
+  padding-left: 40px;
+}
+
+textarea {
+  height: 100px;
+  width: 500px;
 }

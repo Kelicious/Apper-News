@@ -1,0 +1,14 @@
+<div class="story">
+  <%= link_to "▲", "#{story_path(story)}/upvote", method: :post %>
+  <%= link_to "▼", "#{story_path(story)}/downvote", method: :post %>
+  <%= link_to story.title, story.link %>
+  <small>
+    (<%= story.domain %>)
+  </small>
+  <br>
+  <small>
+    <%= story.points %> points by <%= story.author.name %>
+    <%= time_ago_in_words(story.created_at) %> ago |
+    <%= link_to "#{story.comments.count} comments", story %>
+  </small>
+</div>
