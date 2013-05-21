@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new(
       author_id: current_user.id,
-      story_id: params[:id]
+      story_id: params[:story_id]
     )
 
     render 'reply'
@@ -11,9 +11,9 @@ class CommentsController < ApplicationController
 
   def reply
     @comment = Comment.new(
-      parent_id: params[:id],
+      parent_id: params[:comment_id],
       author_id: current_user.id,
-      story_id: Comment.find(params[:id]).story_id
+      story_id: Comment.find(params[:comment_id]).story_id
     )
   end
 
