@@ -3,11 +3,11 @@ class UpvotesController < ApplicationController
     opts = {story_id: params[:id], user_id: current_user.id}
     upvote = Upvote.find(:first, conditions: opts) || Upvote.new(opts)
     if upvote.value == 1
-      flash[:errors] = ["Already upvoted this story"]
+      flash[:error] = "Already upvoted this story"
     elsif (upvote.value = 1) && upvote.save
-      flash[:notice] = ["Upvoted!"]
+      flash[:notice] = "Upvoted!"
     else
-      flash[:errors] = upvote.errors.full_messages
+      flash[:error] = upvote.errors.full_messages.join("<br>");
     end
     
     redirect_to root_url
@@ -17,11 +17,11 @@ class UpvotesController < ApplicationController
     opts = {story_id: params[:id], user_id: current_user.id}
     upvote = Upvote.find(:first, conditions: opts) || Upvote.new(opts)
     if upvote.value == -1
-      flash[:errors] = ["Already downvoted this story"]
+      flash[:error] = "Already downvoted this story"
     elsif (upvote.value = -1) && upvote.save
       flash[:notice] = "Downvoted!"
     else
-      flash[:errors] = upvote.errors.full_messages
+      flash[:error] = upvote.errors.full_messages.join("<br>");
     end
 
     redirect_to root_url

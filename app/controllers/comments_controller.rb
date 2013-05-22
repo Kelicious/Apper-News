@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     if @comment.save
+      flash[:success] = "Comment submitted!"
       redirect_to @comment.story
     else
       render 'reply'

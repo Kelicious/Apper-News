@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notices] = ["Account created!"]
+      flash[:notice] = "Account created!"
       redirect_to @user
     else
       emails_unentered = params[:user][:emails_attributes].select do |key, val|
