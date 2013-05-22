@@ -1,30 +1,4 @@
 <% provide(:title, "Sign Up") %>
 <h1>Signup</h1>
 
-<%= form_for(@user) do |f| %>
-  <ul>
-    <% @user.errors.full_messages.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <br>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <br>
-
-  <h2>Enter Emails</h2>
-  <%= f.fields_for(:emails) do |email_form| %>
-    <%= email_form.label :address %>
-    <%= email_form.text_field :address %>
-    <br>
-  <% end %>
-
-  <%= f.submit "Sign up", class: "btn btn-large btn-primary" %>
-<% end %>
+<%= render 'form' %>
