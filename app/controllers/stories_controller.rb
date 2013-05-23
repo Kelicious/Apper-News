@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
 
   def index
-    @stories = Story.popular
+    @stories = Kaminari.paginate_array(Story.popular).page(params[:page])
   end
 
   def new
