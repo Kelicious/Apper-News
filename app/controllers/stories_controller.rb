@@ -1,11 +1,12 @@
 class StoriesController < ApplicationController
+  before_filter :signed_in_user, only: [:new]
 
   def index
     @stories = Kaminari.paginate_array(Story.popular).page(params[:page])
   end
 
   def new
-    @story = Story.new()
+    @story = Story.new
     @story.comments.build
   end
 

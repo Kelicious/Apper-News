@@ -2,7 +2,7 @@ class Story < ActiveRecord::Base
   attr_accessible :title, :link, :author_id, :comments_attributes, :points
 
   belongs_to :author, class_name: "User"
-  has_many :comments
+  has_many :comments, inverse_of: :story
   accepts_nested_attributes_for :comments, reject_if: :all_blank
 
   has_many :upvotes

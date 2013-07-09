@@ -3,9 +3,9 @@ class Comment < ActiveRecord::Base
 
   after_create :insert_ancestors
 
-  has_many :children, class_name: "Comment", foreign_key: "parent_id"
-  belongs_to :parent, class_name: "Comment"
-  belongs_to :story
+  has_many :children, class_name: "Comment", foreign_key: "parent_id", inverse_of: :parent
+  belongs_to :parent, class_name: "Comment", inverse_of: :children
+  belongs_to :story, inverse_of: :comments
   belongs_to :author, class_name: "User"
 
   has_many :comment_ancestries, foreign_key: "ancestor_id"

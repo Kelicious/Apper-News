@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 gem 'bcrypt-ruby'
 gem 'kaminari'
 
+
 group :development do
   gem 'better_errors'
   gem 'sqlite3'

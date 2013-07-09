@@ -1,4 +1,6 @@
 class UpvotesController < ApplicationController
+  before_filter :signed_in_user
+
   def create
     opts = {story_id: params[:id], user_id: current_user.id}
     upvote = Upvote.find(:first, conditions: opts) || Upvote.new(opts)
