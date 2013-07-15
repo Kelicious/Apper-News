@@ -10,6 +10,7 @@ class Story < ActiveRecord::Base
   validates :title, :link, presence: true
 
   def self.popular
+    # Order by number of upvotes, then by recent
     self.find_by_sql(<<-SQL)
       SELECT stories.*, COALESCE(SUM(upvotes.value), 0) AS points
       FROM stories
