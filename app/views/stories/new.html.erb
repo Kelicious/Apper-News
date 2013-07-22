@@ -8,19 +8,22 @@
     <% end %>
   </ul>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <br>
-  <%= f.label :link %>
-  <%= f.text_field :link %>
-  <br>
-  <%= f.fields_for(:comments) do |comment_form | %>
-    <%= comment_form.label :body, "Add comment" %>
+  <div class="form-inputs">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
     <br>
-    <%= comment_form.text_area :body%>
-    <%= comment_form.hidden_field :author_id, value: current_user.id %>
-  <% end %>
+    <%= f.label :link %>
+    <%= f.text_field :link %>
+    <br>
+    <%= f.fields_for(:comments) do |comment_form | %>
+      <%= comment_form.label :body, "Add comment" %>
+      <br>
+      <%= comment_form.text_area :body%>
+      <%= comment_form.hidden_field :author_id, value: current_user.id %>
+    <% end %>
+  </div>
 
-  <%= f.submit %>
-
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
 <% end %>
