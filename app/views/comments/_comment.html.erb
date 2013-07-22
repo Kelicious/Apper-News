@@ -8,7 +8,10 @@
   <small><%= link_to "Reply To Comment", comment_reply_path(comment) %></small>
 </div>
 <div class="comment-replies">
-  <% comment.children.each do |comment| %>
-    <%= render comment %>
+  <% comments_by_parent[comment.id].each do |child| %>
+    <%= render partial: 'comments/comment', locals: {
+          comment: child,
+          comments_by_parent: comments_by_parent
+        } %>
   <% end %>
 </div>

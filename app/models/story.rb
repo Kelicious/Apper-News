@@ -20,6 +20,10 @@ class Story < ActiveRecord::Base
       ORDER BY SUM(upvotes.value) DESC, stories.created_at DESC
     SQL
   end
+
+  def comments_by_parent
+    Comment.comments_by_parent(comments)
+  end
   
   def points
     @points || upvotes.sum("value")

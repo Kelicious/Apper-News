@@ -1,6 +1,11 @@
 <%= render @story %>
 <small><%= link_to "Reply to Article", new_story_comment_path(@story) %></small>
+
 <br><br><br>
-<% @story.comments.select{ |c| c.parent.nil? }.each do |comment| %>
-  <%= render comment %>
+
+<% @comments_by_parent[nil].each do |comment| %>
+  <%= render partial: 'comments/comment', locals: {
+        comment: comment,
+        comments_by_parent: @comments_by_parent
+      } %>
 <% end %>

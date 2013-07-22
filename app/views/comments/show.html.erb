@@ -1,4 +1,4 @@
-<%= render @comment %>
-<% @comment.descendents.select { |c| c.parent_id == @comment.id }.each do |comment| %>
-  <%#= render comment %>
-<% end %>
+<%= render partial: 'comments/comment', locals: {
+      comment: @comment,
+      comments_by_parent: @comments_by_parent
+    } %>

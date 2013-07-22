@@ -22,5 +22,6 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
+    @comments_by_parent = @story.comments_by_parent
   end
 end

@@ -14,6 +14,16 @@ class Comment < ActiveRecord::Base
 
   validates :body, :author_id, presence: true
 
+  def self.comments_by_parent(comments)
+    comments_by_parent = Hash.new { |hash, key| hash[key] = [] }
+    comments.each { |comment| comments_by_parent[comment.parent_id] << comment}
+    comments_by_parent
+  end
+
+  def comments_by_parent
+    Comment.comments_by_parent(descendents)
+  end
+
   private
 
   def insert_ancestors
